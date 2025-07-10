@@ -31,7 +31,11 @@ export const handler = async (ctx: AppContext) => {
             return { feed: [] };
         }
 
-        const feedItems: SkeletonFeedPost[] = posts.map((item: any) => {
+        const filteredPosts = posts.map((item: any) => {
+            return !item.reason;
+        })
+
+        const feedItems: SkeletonFeedPost[] = filteredPosts.map((item: any) => {
             return {
                 post: item.post.uri
             }
